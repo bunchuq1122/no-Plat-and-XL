@@ -1,0 +1,29 @@
+{
+	"geode": "5.0.0-beta.4",
+	"gd": {
+		"win": "2.2081",
+		"mac": "2.2081"
+	},
+	"id": "bunchuq1122.no-xl-and-plat",
+	"name": "No XL and PLAT",
+	"version": "v1.0.0",
+	"developer": "Bunchuq1122",
+	"description": "",
+	"dependencies": {
+		"geode.node-ids": ">=v1.20.0"
+	},
+	"settings": {
+		"hide_plat": {
+			"type": "bool",
+			"name": "hide platformer level",
+			"default": true,
+			"description": "put X-mark on platformer level"
+		},
+		"hide_XL": {
+			"type": "bool",
+			"name": "hide XL level",
+			"default": true,
+			"description": "put X-mark on XL level"
+		}
+	}
+}
