@@ -25,5 +25,11 @@
 			"default": true,
 			"description": "put X-mark on XL level"
 		}
-	}
+	},
+	"links": {
+		"source": "https://github.com/bunchuq1122?tab=repositories"
+	},
+	"tags": [
+		"joke", "offline"
+	]
 }
