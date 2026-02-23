@@ -6,9 +6,9 @@
 	},
 	"id": "bunchuq1122.no-xl-and-plat",
 	"name": "No XL and PLAT",
-	"version": "v1.0.3",
+	"version": "v1.0.4",
 	"developer": "Bunchuq1122",
-	"description": "",
+	"description": "Easily ignore the poor level",
 	"dependencies": {
 		"geode.node-ids": ">=v1.20.0"
 	},
