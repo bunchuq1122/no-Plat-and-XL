@@ -6,3 +6,6 @@
 
 # 1.0.2
 - geode 5.0.0 released
+
+# 1.0.3
+- support Android
