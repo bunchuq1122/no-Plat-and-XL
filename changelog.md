@@ -12,3 +12,6 @@
 
 # 1.0.4
 - Description Added
+
+# 1.0.5
+- compactview fixed

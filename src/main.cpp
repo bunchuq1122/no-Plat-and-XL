@@ -9,29 +9,36 @@ using namespace geode::prelude;
 namespace {
     constexpr int kLevelLengthXL = 4;
 
-    void addBlockOverlay(CCNode* host, bool isXL) {
+    void addBlockOverlay(CCNode* host, bool isXL, bool isCompact) {
         if (!host) return;
 
         auto blur = CCLayerColor::create({0, 0, 0, 110});
         blur->setContentSize({356.f, 90.f});
+        if(isCompact) {
+            blur->setContentHeight(50.f);
+        }
         blur->setZOrder(1);
         host->addChild(blur);
 
         auto x = CCLabelBMFont::create("X", "chatFont.fnt");
         x->setAnchorPoint({0.5f, 0.5f});
-        x->setPosition({178.f, 45.f});
+        x->setPosition({
+            blur->getPositionX() + 173.f,
+            blur->getPositionY() + blur->getContentHeight() / 2 
+        });
         x->setColor({255, 0, 0});
         x->setZOrder(2);
 
-        if (isXL) {
-            x->setScaleX(15.f);
-            x->setScaleY(4.f);
+        // super unnecessary codes
+        if (isCompact) {
+            x->setScaleX(8.f);
+            x->setScaleY(2.f);
         } else {
             x->setScaleX(20.f);
             x->setScaleY(4.f);
         }
 
-        host->addChild(x);
+        blur->addChild(x);
     }
 }
 
@@ -47,7 +54,7 @@ class $modify(noPlatAndXL, LevelCell) {
         bool isXL = level->m_levelLength == kLevelLengthXL;
 
         if ((hidePlat && isPlat) || (hideXl && isXL)) {
-            addBlockOverlay(this, isXL);
+            addBlockOverlay(this, isXL, m_compactView);
         }
     }
 };
@@ -72,7 +79,6 @@ class $modify(notifyPlatAndXL, LevelInfoLayer) {
         FLAlertLayer::create("Warning", content, "ok")->show();
     }
 
-public:
     bool init(GJGameLevel* level, bool challenge) {
         if (!LevelInfoLayer::init(level, challenge)) return false;
         if (!level) return true;
@@ -85,8 +91,8 @@ public:
 
         if (!m_fields->warnIsPlat && !m_fields->warnIsXL) return true;
 
-        auto playMenu = this->getChildByIDRecursive("play-menu");
-        auto playBtn  = this->getChildByIDRecursive("play-button");
+        auto playMenu = m_playBtnMenu;
+        auto playBtn  = playMenu->getChildByID("play-button");
         if (!playMenu || !playBtn) return true;
 
         auto spr = CCSprite::createWithSpriteFrameName("exMark_001.png");
